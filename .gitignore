@@ -129,7 +129,3 @@ dmypy.json
 .pyre/
 
 .idea/
-
-# Project exclude paths
-/website/static/bootstrap/
-/website/static/packages/
