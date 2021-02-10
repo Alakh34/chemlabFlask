@@ -19,8 +19,7 @@ def login():
                 flash('Logged in successfully!', category='success')
                 login_user(user, remember=True)
                 return redirect(url_for('views.home'))
-            else:
-                flash('Incorrect password, try again.', category='danger')
+            flash('Incorrect password, try again.', category='danger')
         else:
             flash('Email does not exist.', category='danger')
 
