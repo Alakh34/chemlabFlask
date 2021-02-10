@@ -99,7 +99,7 @@ def change_password():
 @views.before_app_first_request
 def add_default_items():
     with open('website/items.yaml') as fh:
-        data = yaml.load(fh, Loader=yaml.FullLoader)
+        data = yaml.load(fh, Loader=yaml.SafeLoader)
     for item in data.keys():
         item_name = data[item]['item_name']
         total_stock = data[item]['total_stock']
