@@ -1,7 +1,7 @@
 version = 1
 
 exclude_patterns = [
-    "website/static/bootstrap/*",
+    "website/static/bootstrap/*/*",
     "website/static/packages/*"
 ]
 
@@ -11,11 +11,3 @@ enabled = true
 
   [analyzers.meta]
   runtime_version = "3.x.x"
-
-[[analyzers]]
-name = "javascript"
-enabled = true
-
-  [analyzers.meta]
-  environment = ["browser"]
-  style_guide = "standard"
