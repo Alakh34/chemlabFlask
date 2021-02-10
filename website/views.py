@@ -21,13 +21,18 @@ def rent():
         item = Items.query.filter_by(item_name=item_name).first()
         available_stock = item.available_stock
         if available_stock < quantity:
-            flash(f"Could not place order, only {available_stock} {item_name}(s) currently in stock", category='danger')
+            flash(f"Could not place order,\
+                  only {available_stock} {item_name}(s) currently in stock",
+                  category='danger')
         elif current_user.balance < 0:
-            flash(f"Could not rent item, balance too low.", category="danger")
+            flash("Could not rent item, balance too low.", category="danger")
         else:
             item.available_stock -= quantity
-            order = Orders(item_id=item.item_id, user_id=current_user.id, quantity=quantity,
-                           when_rented=datetime.utcnow())
+            order = Orders(item_id=item.item_id,
+                           user_id=current_user.id,
+                           quantity=quantity,
+                           when_rented=datetime.utcnow()
+                           )
             db.session.add(order)
             db.session.commit()
             flash("Item Rented Successfully!", category='success')
@@ -105,7 +110,11 @@ def add_default_items():
         total_stock = data[item]['total_stock']
         available_stock = data[item]['available_stock']
         price = data[item]['price']
-        item = Items(item_name=item_name, total_stock=total_stock, available_stock=available_stock, price=price)
+        item = Items(item_name=item_name,
+                     total_stock=total_stock,
+                     available_stock=available_stock,
+                     price=price
+                     )
         try:
             db.session.add(item)
             db.session.commit()
