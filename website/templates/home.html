@@ -57,7 +57,7 @@
       </tr>
     </thead>
     <tbody>
-      {% for order in user.rentals %} {% if order.returned %}
+      {% for order in user.rentals|reverse %} {% if order.returned %}
       <tr>
         <td class="text-capitalize text-center">{{ order.item.item_name }}</td>
         <td class="text-center">{{ order.quantity }}</td>

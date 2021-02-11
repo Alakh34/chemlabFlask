@@ -4,3 +4,5 @@ Flask
 Flask-login
 werkzeug
 SQLAlchemy
+python-dotenv
+requests

@@ -8,6 +8,7 @@ from math import ceil
 from werkzeug.security import generate_password_hash, check_password_hash
 import yaml
 from sqlalchemy.exc import IntegrityError
+from .mailgun import invoice
 
 views = Blueprint('views', __name__)
 
@@ -67,6 +68,7 @@ def return_item():
         order.hours = hours
         db.session.commit()
         flash('Item returned', category='success')
+        invoice(email=current_user.email, name=current_user.first_name, order=order)
     return jsonify({})
 
 
