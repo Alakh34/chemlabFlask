@@ -12,14 +12,11 @@ def sign_up_email(email, name):
         "https://api.eu.mailgun.net/v3/alakh.codes/messages",
         auth=("api", api_key),
         data={"from": "Chemlab <chemlab@alakh.codes>",
-              "to": f"{name} <{email}>",
-              "subject": f"Welcome to chemlab!",
-              "text": f'''Hi {name},
-
-Thanks for signing up at chemlab!
-              
-You are given a balance of 100 to start with!
-              
+              "to": f"{name.capitalize()} <{email}>",
+              "subject": "Welcome to chemlab!",
+              "text": f'''Hi {name.capitalize()},\n
+Thanks for signing up at chemlab!\n
+You are given a balance of 100 to start with!\n
 You may rent new item(s) at https://chemlab.alakh.codes/rent'''})
 
 
@@ -28,18 +25,18 @@ def invoice(email, name, order):
     with open('website/static/packages/invoice.html', 'r') as f:
         html_string = f.read()
         html_string = html_string.format(amount=order.amount,
-                                         name=order.user.first_name,
+                                         name=order.user.first_name.capitalize(),
                                          order_no=order.order_id,
                                          date=datetime.today().strftime('%Y-%m-%d'),
                                          quantity=order.quantity,
-                                         item=order.item.item_name,
+                                         item=order.item.item_name.capitalize(),
                                          hours=order.hours,
                                          )
         return requests.post(
             "https://api.eu.mailgun.net/v3/alakh.codes/messages",
             auth=("api", api_key),
             data={"from": "Chemlab <chemlab@alakh.codes>",
-                  "to": f"{name} <{email}>",
-                  "subject": f"Your Invoice from Chemlab!",
+                  "to": f"{name.capitalize()} <{email}>",
+                  "subject": "Your Invoice from Chemlab!",
                   "html": html_string
                   })
