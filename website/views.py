@@ -68,7 +68,7 @@ def return_item():
         order.hours = hours
         db.session.commit()
         flash('Item returned', category='success')
-        invoice(email=current_user.email, name=current_user.first_name, order=order)
+        invoice(order=order)
     return jsonify({})
 
 

@@ -15,6 +15,7 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(150))
     first_name = db.Column(db.String(150))
+    last_name = db.Column(db.String(150))
     password = db.Column(db.String(150))
     when_joined = db.Column(db.DateTime(timezone=True), default=datetime.utcnow())
     balance = db.Column(db.Integer, default=100)
