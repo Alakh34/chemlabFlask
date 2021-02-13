@@ -8,16 +8,17 @@ load_dotenv()
 
 def sign_up_email(user):
     api_key = os.getenv('mailgun_api')
+    with open('website/templates/sign_up_email.html', 'r') as f:
+        html_string = f.read()
+        html_string = html_string.format(name=user.first_name)
     return requests.post(
         "https://api.eu.mailgun.net/v3/alakh.codes/messages",
-        auth=("api", api_key),
-        data={"from": "Chemlab <chemlab@alakh.codes>",
-              "to": f"{user.first_name.capitalize()} {user.last_name.capitalize()} <{user.email}>",
-              "subject": "Welcome to chemlab!",
-              "text": f'''Hi {user.first_name.capitalize()},\n
-Thanks for signing up at chemlab!\n
-You are given a balance of 100 to start with!\n
-You may rent new item(s) at https://chemlab.alakh.codes/rent'''})
+        auth=("api", "97f2412177772abfd45e85307bc54a99-4de08e90-aa56af58"),
+        data={"from": "Chemlab sign up <chemlab@alakh.codes>",
+              "to": f"{user.first_name} {user.last_name} <{user.email}>",
+              "subject": "Welcome to Chemlab!",
+              "html": html_string
+              })
 
 
 def invoice(order):
