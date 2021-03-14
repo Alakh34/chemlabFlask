@@ -3,10 +3,7 @@ from dotenv import load_dotenv
 import os
 from datetime import datetime
 
-try:
-    load_dotenv()
-except:
-    pass
+load_dotenv()
 
 
 def sign_up_email(user):
