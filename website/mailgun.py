@@ -15,7 +15,7 @@ def sign_up_email(user):
         "https://api.eu.mailgun.net/v3/alakh.codes/messages",
         auth=("api", api_key),
         data={"from": "Chemlab <chemlab@alakh.codes>",
-              "to": f"{user.first_name} {user.last_name} <{user.email}>",
+              "to": f"{user.first_name.capitalize()} {user.last_name.capitalize()} <{user.email}>",
               "subject": "Welcome to Chemlab!",
               "html": html_string
               })
