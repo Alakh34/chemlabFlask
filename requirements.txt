@@ -2,7 +2,7 @@ PyYAML
 Flask-SQLAlchemy
 Flask
 Flask-login
-werkzeug
 SQLAlchemy
 python-dotenv
 requests
+greenlet==0.4.17
